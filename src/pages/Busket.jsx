@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import Container from "../components/container";
 import { Button, Col, Flex, Row, Select, Typography } from "antd";
@@ -13,10 +13,29 @@ import { default as Btn } from "../components/Button";
 import AlsoBuy from "../components/Also-buy";
 import { useCart } from "react-use-cart";
 import { ProductItem } from "./ProductItem";
+import { BuyContext } from "../context/buy";
+import axios from "axios"
+import { TelegramGetChatId, TelegramPostChat } from "../modules/tekegram";
 
 const Bag = () => {
     const { isEmpty, items, updateItemQuantity, removeItem, cartTotal } = useCart()
     const [Shipping, setShipping] = useState(0)
+    const {User, setAuth, setUser, Auth} = useContext(BuyContext)
+    const token = process.env.REACT_APP_TELEGRAM_TOKEN
+
+    TelegramPostChat("Hello text from Moody1")
+
+
+    const handleBuy = e => {
+        e.preventDefault()
+        if(Auth === ""){
+            alert(`Enter your email`)
+        }
+
+        TelegramPostChat("Hello text from Moody2")
+
+    }
+
 
     useEffect(() => {
         setShipping(prev => cartTotal + prev)
@@ -66,8 +85,11 @@ const Bag = () => {
                                     </Title>
                                     <Flex>
                                         <Input type={"email"} placeholder={`Enter your e-mail address`}
-                                            className={`Shopping-bag__form-input`} />
-                                        <Btn type={"submit"} primary className={`Shopping-bag__form-button`}>
+                                            className={`Shopping-bag__form-input`}
+                                            value={User}
+                                            onChange={ e=> setUser(e.target.value)}
+                                            />
+                                        <Btn onClick={handleBuy} type={"submit"} primary className={`Shopping-bag__form-button`}>
                                             ADD
                                         </Btn>
                                     </Flex>
