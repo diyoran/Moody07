@@ -14,6 +14,7 @@ import axios from "axios";
 import { Context } from "../context/index"
 import { useParams } from "react-router-dom";
 import { useCart } from "react-use-cart";
+import { Helmet } from "react-helmet";
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -96,6 +97,11 @@ const Product = () => {
     if (state.isParams)
         return (
             <Fragment>
+                <Helmet>
+                    <title>
+                        Moody/{state?.data.title}
+                    </title>
+                </Helmet>
                 <Breadcrumb current={state?.data.title} />
 
                 <section className="Product">

@@ -18,6 +18,7 @@ import Input from "../components/Input";
 import { default as Btn } from "../components/Button";
 import { Context } from "../context"
 import { SavedContext } from "../context/saved";
+import { Helmet } from "react-helmet"
 
 const Home = () => {
     const { ProductsData } = useContext(Context);
@@ -75,6 +76,11 @@ const Home = () => {
 
     return (
         <Fragment>
+            <Helmet>
+                <title>
+                    Moody/Home
+                </title>
+            </Helmet>
             <Container>
 
                 <Flex

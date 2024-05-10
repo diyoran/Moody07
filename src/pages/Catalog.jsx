@@ -8,6 +8,7 @@ import Cart from "../components/Cart";
 import Product1 from "../images/product1.png";
 import { default as Btn } from "../components/Button";
 import { Context } from "../context/index";
+import { Helmet } from "react-helmet";
 
 const Catalog = () => {
     const [IsShow, setIsShow] = useState(false);
@@ -77,6 +78,11 @@ const Catalog = () => {
 
     return (
         <Fragment>
+            <Helmet>
+                <title>
+                    Moody/Catalog
+                </title>
+            </Helmet>
             <Breadcrumb />
             <section className="Sales">
                 <Container>

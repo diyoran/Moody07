@@ -16,11 +16,12 @@ import { ProductItem } from "./ProductItem";
 import { BuyContext } from "../context/buy";
 import axios from "axios"
 import { TelegramGetChatId, TelegramPostChat } from "../modules/tekegram";
+import { Helmet } from "react-helmet";
 
 const Bag = () => {
     const { isEmpty, items, updateItemQuantity, removeItem, cartTotal } = useCart()
     const [Shipping, setShipping] = useState(0)
-    const {User, setAuth, setUser, Auth} = useContext(BuyContext)
+    const { User, setAuth, setUser, Auth } = useContext(BuyContext)
     const token = process.env.REACT_APP_TELEGRAM_TOKEN
 
     TelegramPostChat("Hello text from Moody1")
@@ -28,7 +29,7 @@ const Bag = () => {
 
     const handleBuy = e => {
         e.preventDefault()
-        if(Auth === ""){
+        if (Auth === "") {
             alert(`Enter your email`)
         }
 
@@ -58,6 +59,11 @@ const Bag = () => {
 
     return (
         <Fragment>
+            <Helmet>
+                <title>
+                    Moody/Bag
+                </title>
+            </Helmet>
             <Breadcrumb />
 
             <section className="Shopping-bag">
@@ -87,8 +93,8 @@ const Bag = () => {
                                         <Input type={"email"} placeholder={`Enter your e-mail address`}
                                             className={`Shopping-bag__form-input`}
                                             value={User}
-                                            onChange={ e=> setUser(e.target.value)}
-                                            />
+                                            onChange={e => setUser(e.target.value)}
+                                        />
                                         <Btn onClick={handleBuy} type={"submit"} primary className={`Shopping-bag__form-button`}>
                                             ADD
                                         </Btn>

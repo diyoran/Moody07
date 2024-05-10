@@ -18,12 +18,23 @@ import NotFound from "./pages/NotFound";
 import Saved from "./pages/Saved";
 import Input from "./components/Input";
 import { useCart } from "react-use-cart";
+import { Helmet } from "react-helmet";
+import OgImage from "./images/banner-image.png"
 
 const App = () => {
     const { totalUniqueItems } = useCart();
 
     return (
         <Fragment>
+            <Helmet>
+                <meta name="description" content = "Moddy Store learning project"/>
+                <meta name="keywords" content = "Moody, Moody Store, Moody Studio, Online Market"/>
+                <meta property="og:title" content="Moody Store"/>
+                <meta property="og:description" content="Moddy Store learning project"/>
+                <meta property="og:image" content={OgImage}/>
+                <meta property="og:url" content={window.location.href}/>
+                <meta property="og:type" content="website"/>
+            </Helmet>
             <header className="header">
                 <Container>
                     <Flex
